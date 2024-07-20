@@ -3,16 +3,11 @@ import { Provider } from "react-redux"
 import { store } from "../redux/store"
 
 interface ReduxProviderProps {
-  children: ReactNode,
+	children: ReactNode
 }
 
-
-const ReduxProvider: FC<ReduxProviderProps> = ({children}) => {
-  return (
-    <>
-     <Provider store={store}>{children}</Provider>
-    </>
-  )
+const ReduxProvider: FC<ReduxProviderProps> = ({ children }) => {
+	return <Provider store={store}>{children}</Provider>
 }
 
 export default ReduxProvider

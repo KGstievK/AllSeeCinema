@@ -1,0 +1,32 @@
+.auth {
+	.content {
+		width: 100%;
+		height: calc(80vh);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+			max-width: 400px;
+			width: 100%;
+			margin-bottom: 200px;
+
+			h2 {
+				font-size: 32px;
+			}
+
+			input,
+			button {
+				outline: none;
+				border: 1px solid black;
+				background: transparent;
+				padding: 5px;
+				width: 100%;
+			}
+		}
+	}
+}

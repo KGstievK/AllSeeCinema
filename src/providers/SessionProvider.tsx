@@ -1,44 +1,60 @@
-import { FC, ReactNode, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useGetMeQuery } from '../redux/api/auth';
+"use client"
+import React from "react"
+import { usePathname, useRouter } from "next/navigation"
+
+import { useGetMeQuery, usePostRefreshTokenMutation } from "../redux/api/auth"
 
 interface SessionProviderProps {
-	children: ReactNode;
+	children: React.ReactNode
 }
 
-export const SessionProvider: FC<SessionProviderProps> = ({ children }) => {
-	const { status } = useGetMeQuery();
-	const { pathname } = useLocation();
-	const navigate = useNavigate();
+export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
+	const { status } = useGetMeQuery()
+	const pathname = usePathname()
+	const router = useRouter()
+	const [refreshToken] = usePostRefreshTokenMutation()
 
-	const handleNavigation = () => {
-		switch (pathname) {
-			case '/auth/login':
-			case '/auth/registration':
-			case '/auth/reset-password':
-			case '/auth/forgot':
-				if (status === 'fulfilled') {
-					navigate('/');
-				}
-				break;
-			case '/':
-			case '/movie':
-			case '/notifications':
-			case '/settings':
-			case '/my-profile':
-			case '/my-public':
-				if (status === 'rejected') {
-					navigate('/auth/login');
-				}
-				break;
-			default:
-				break;
+	const access = JSON.parse(String(localStorage.getItem("access")))
+	const refresh = JSON.parse(String(localStorage.getItem("refresh")))
+
+	const handleNavigation = async () => {
+		if (status === "rejected" && access && refresh) {
+			const formData = new FormData()
+			formData.append("refresh", refresh)
+			const { data } = await refreshToken(formData)
+			if (data) {
+				localStorage.setItem("access", JSON.stringify(data.access))
+			}
 		}
-	};
 
-	useEffect(() => {
-		handleNavigation();
-	}, [status, pathname, navigate]);
+		switch (pathname) {
+			case "/auth/sign-in":
+			case "/auth/sign-up":
+			case "/auth/reset-password":
+			case "/auth/forgot":
+				if (status === "fulfilled") {
+					router.push("/")
+					// window.location.pathname
+				}
+				break
+			case "/":
+			case "/movie":
+			case "/notifications":
+			case "/settings":
+			case "/my-profile":
+			case "/my-public":
+				if (status === "rejected") {
+					router.push("/auth/sign-in")
+				}
+				break
+			default:
+				break
+		}
+	}
 
-	return children;
-};
+	React.useEffect(() => {
+		handleNavigation()
+	}, [status, pathname, router])
+
+	return children
+}
