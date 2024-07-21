@@ -2,7 +2,7 @@ import { api as index } from '..';
 
 const api = index.injectEndpoints({
 	endpoints: (build) => ({
-		getRating: build.query<GetMovieResponse, GetMovieRequest>({
+		getRating: build.query({
 			query: () => ({
 				url: '',
 				method: 'GET'
