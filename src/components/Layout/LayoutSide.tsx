@@ -1,18 +1,21 @@
-import { Outlet } from 'react-router-dom'
-import Footer from './Footer/Footer'
-import Header from './Header/Header'
-import scss from './LayoutSide.module.scss'
+"use client"
+import React from "react"
+import Footer from "./Footer/Footer"
+import Header from "./Header/Header"
+import scss from "./LayoutSide.module.scss"
 
-const LayoutSide = () => {
-  return (
-    <div className={scss.LayoutSide}>
-      <Header/>
-      <main>
-        <Outlet/>
-      </main>
-      <Footer/>
-    </div>
-  )
+interface ILayoutSide {
+	children: React.ReactNode
+}
+
+const LayoutSide: React.FC<ILayoutSide> = ({ children }) => {
+	return (
+		<div className={scss.LayoutSide}>
+			<Header />
+			<main>{children}</main>
+			<Footer />
+		</div>
+	)
 }
 
 export default LayoutSide
