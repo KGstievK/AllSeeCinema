@@ -7,7 +7,7 @@ const api = index.injectEndpoints({
       INFOMOVIE.GetInfoMovieRequest
     >({
       query: () => ({
-        url: "",
+        url: "/movie/",
         method: "GET",
       }),
       providesTags: ["infomovie"],
