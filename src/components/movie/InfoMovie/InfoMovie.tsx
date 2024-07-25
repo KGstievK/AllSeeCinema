@@ -1,9 +1,9 @@
 "use client";
-import { useInfoMovieQuery } from "@/redux/api/infomovie";
+import { useGetMovieQuery } from "@/redux/api/infomovie";
 import React from "react";
 
 const InfoMovie: React.FC = () => {
-  const { data, error, isLoading } = useInfoMovieQuery();
+  const { data, error, isLoading } = useGetMovieQuery();
 
   if (isLoading) {
     return <div>Loading</div>;

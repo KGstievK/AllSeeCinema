@@ -2,7 +2,7 @@ import { api as index } from "..";
 
 const api = index.injectEndpoints({
   endpoints: (build) => ({
-    InfoMovie: build.query<
+    getMovie: build.query<
       INFOMOVIE.GetInfoMovieResponse,
       INFOMOVIE.GetInfoMovieRequest
     >({
@@ -12,6 +12,16 @@ const api = index.injectEndpoints({
       }),
       providesTags: ["infomovie"],
     }),
+    postMovie: build.mutation<
+      INFOMOVIE.PostInfoMovieResponse,
+      INFOMOVIE.PostInfoMovieRequest
+    >({
+      query: () => ({
+        url: "/movie/",
+        method: "POST",
+      }),
+      invalidatesTags: ["infomovie"],
+    }),
   }),
 });
-export const { useInfoMovieQuery } = api;
+export const { useGetMovieQuery, usePostMovieMutation } = api;

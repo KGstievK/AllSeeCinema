@@ -36,4 +36,11 @@ namespace INFOMOVIE {
   };
 
   type GetInfoMovieRequest = void;
+  // ?POST===>
+  type PostInfoMovieResponse = {
+    id: number;
+    title: string;
+  };
+
+  type PostInfoMovieRequest = void;
 }
