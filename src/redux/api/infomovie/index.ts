@@ -14,4 +14,4 @@ const api = index.injectEndpoints({
     }),
   }),
 });
-export const { useGetMovieQuery } = api;
+export const { useLazyGetMovieQuery } = api;

@@ -1,8 +1,7 @@
-"use client";
 import { useEffect, useState } from "react";
 import scss from "./HomeSection.module.scss";
-// import { useGetRatingQuery } from "@/redux/api/infomovie";
-// import { useGetMeQuery } from "@/redux/api/auth";
+import { useGetRatingQuery } from "@/redux/api/infomovie";
+import { useGetMeQuery } from "@/redux/api/auth";
 import { useGetMovieQuery } from "@/redux/api/movie";
 
 const HomeSection = () => {
