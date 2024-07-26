@@ -25,7 +25,7 @@ namespace INFOMOVIE {
     fees_in_world: number;
     draft: boolean;
     date: number;
-    quality: Quality;
+    quality: waggerQuality;
     star: number;
     created: string;
     slug: string;
@@ -36,11 +36,4 @@ namespace INFOMOVIE {
   };
 
   type GetInfoMovieRequest = void;
-  // ?POST===>
-  type PostInfoMovieResponse = {
-    id: number;
-    title: string;
-  };
-
-  type PostInfoMovieRequest = void;
 }
