@@ -22,7 +22,9 @@ const Header: React.FC = () => {
 					{status === "rejected" ? (
 						<>
 							<div className={scss.logo}>
-								<h1>Cinema</h1>
+								<Link href="">
+									<h1>Cinema</h1>
+								</Link>
 							</div>
 							<nav className={scss.nav}>
 								<Link href="/auth/sign-in">Sign-in</Link>
@@ -37,7 +39,7 @@ const Header: React.FC = () => {
 								</Link>
 							</div>
 							<nav className={scss.nav}>
-								<Link href="/movie">Movies</Link>
+								<Link href="/movie/room">Test</Link>
 								<Link href="/my-profile">Profile</Link>
 								<button onClick={onLogout}>Logout</button>
 							</nav>

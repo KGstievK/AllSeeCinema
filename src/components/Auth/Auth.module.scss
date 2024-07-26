@@ -1,3 +1,5 @@
+@use "../Variable.scss" as variable;
+
 .auth {
 	.content {
 		width: 100%;
@@ -17,15 +19,35 @@
 
 			h2 {
 				font-size: 32px;
+				color: variable.$red;
 			}
 
 			input,
 			button {
 				outline: none;
-				border: 1px solid black;
+				border: 1px solid variable.$gray;
+				color: variable.$white;
 				background: transparent;
-				padding: 5px;
+				padding: 10px;
 				width: 100%;
+				transition: 1s;
+
+				&:hover {
+					border-color: variable.$white;
+				}
+			}
+
+			input {
+				&:focus {
+					border-color: variable.$blue;
+				}
+			}
+
+			button {
+				&:active {
+					border-color: variable.$blue;
+					color: variable.$blue;
+				}
 			}
 		}
 	}

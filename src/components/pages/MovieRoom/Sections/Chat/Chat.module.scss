@@ -1,0 +1,42 @@
+@use "../../../../Variable.scss" as variable;
+
+.chat {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	.content {
+		padding: 5px;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 10px;
+
+		.message {
+			width: 100%;
+			height: 100%;
+			border-color: variable.$white;
+
+			p {
+				color: variable.$white;
+			}
+		}
+
+		.send {
+			width: 100%;
+			margin-top: auto;
+
+			input {
+				width: 100%;
+				padding: 5px;
+				outline: none;
+				background: transparent;
+				border: 1px solid variable.$white;
+				color: variable.$white;
+			}
+		}
+	}
+}

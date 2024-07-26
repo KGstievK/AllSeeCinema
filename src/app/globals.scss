@@ -1,3 +1,5 @@
+@use "../components/Variable.scss" as variable;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -17,4 +19,5 @@ a {
 
 body {
 	font-family: sans-serif;
+	background: variable.$black;
 }

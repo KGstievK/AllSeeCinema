@@ -9,7 +9,7 @@ interface SessionProviderProps {
 }
 
 export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
-	const { status } = useGetMeQuery()
+	const { status, refetch } = useGetMeQuery()
 	const pathname = usePathname()
 	const router = useRouter()
 	const [refreshToken] = usePostRefreshTokenMutation()
@@ -21,9 +21,17 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
 		if (status === "rejected" && access && refresh) {
 			const formData = new FormData()
 			formData.append("refresh", refresh)
-			const { data } = await refreshToken(formData)
+			const { data, error } = await refreshToken(formData)
+
+			if (error) {
+				localStorage.removeItem("access")
+				localStorage.removeItem("refresh")
+				localStorage.removeItem("id")
+			}
+
 			if (data) {
 				localStorage.setItem("access", JSON.stringify(data.access))
+				refetch()
 			}
 		}
 
@@ -54,7 +62,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
 
 	React.useEffect(() => {
 		handleNavigation()
-	}, [status, pathname, router])
+	}, [status, pathname, router, refetch])
 
 	return children
 }

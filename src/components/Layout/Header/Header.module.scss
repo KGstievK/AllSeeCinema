@@ -1,3 +1,5 @@
+@use "../../Variable.scss" as variable;
+
 .Header {
 	padding-block: 14px;
 	.content {
@@ -8,12 +10,45 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
+			h1 {
+				font-size: 32px;
+				color: variable.$blue;
+				transition: 1s;
+
+				&:hover {
+					color: variable.$red;
+				}
+			}
 		}
 		.nav {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: 10px;
+
+			a {
+				font-size: 16px;
+				color: variable.$blue;
+				transition: 1s;
+
+				&:hover {
+					color: variable.$red;
+				}
+			}
+
+			button {
+				font-size: 16px;
+				color: variable.$blue;
+				outline: none;
+				border: none;
+				background: transparent;
+				transition: 1s;
+
+				&:hover {
+					color: variable.$red;
+				}
+			}
 		}
 	}
 }

@@ -1,0 +1,36 @@
+@use "../../Variable.scss" as variable;
+
+.movie_room {
+	overflow-y: hidden;
+	.content {
+		width: 100%;
+		height: calc(90vh);
+		display: grid;
+		grid-template-columns: 8fr 2fr;
+
+		.about {
+			display: grid;
+			grid-template-columns: 100%;
+			grid-template-rows: 1fr 8fr;
+			transition: 1s;
+
+			&_movie {
+				grid-template-rows: 6fr 4fr;
+			}
+
+			.movie,
+			.chat {
+				overflow: hidden;
+				position: relative;
+			}
+
+			.movie {
+				// border: 1px solid variable.$blue;
+				border-bottom: 1px solid variable.$blue;
+			}
+			// .chat {
+			// 	border: 1px solid variable.$red;
+			// }
+		}
+	}
+}

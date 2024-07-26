@@ -23,6 +23,6 @@ export const api = createApi({
 	baseQuery: baseQueryExtended,
 	refetchOnReconnect: true,
 	refetchOnFocus: false,
-	tagTypes: ["auth", "movie", "infomovie"],
+	tagTypes: ["auth", "movie", "infomovie", "room"],
 	endpoints: () => ({}),
 })
