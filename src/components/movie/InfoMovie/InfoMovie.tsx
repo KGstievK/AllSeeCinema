@@ -1,37 +1,40 @@
 "use client";
-import { useGetMovieQuery } from "@/redux/api/infomovie";
-import React from "react";
+import { useGetMovieInfoQuery } from "@/redux/api/infomovie";
+import React, { useEffect } from "react";
 
 const InfoMovie: React.FC = () => {
-  const { data, error, isLoading } = useGetMovieQuery();
+  const { data, isLoading } = useGetMovieInfoQuery();
+
+  useEffect(() => {
+    if (data) {
+      console.log("Данные получены:", data);
+    }
+  }, [data]);
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <p>Загрузка...</p>;
+  } else if (!data) {
+    return <p>Нет данных для отображения</p>;
   }
 
-  if (error) {
-    return <div>Ошибка при загрузки информации</div>;
-  }
   return (
     <div>
-      <h1>Information </h1>
-      <div>
-        {data && (
-          <>
-            <h1>{data.title}</h1>
-            <p>{data.description}</p>
-            <ul>
-              <li>Год: {data.year}</li>
-              <li>Страна: {data.country}</li>
-              <li>Бюджет: {data.budget}</li>
-              <li>Сборы в США: {data.fees_in_usa}</li>
-              <li>Сборы в мире: {data.fees_in_world}</li>
-              <li>Качество: {data.quality}</li>
-              <li>Рейтинг: {data.star}</li>
-            </ul>
-          </>
-        )}
-      </div>
+      <h1>Information</h1>
+      {data.map((item) => (
+        <div key={item.id}>
+          <h1>{item.title}</h1>
+          <p>{item.description}</p>
+          <ul>
+            <li>Год: {item.year}</li>
+            <li>Страна: {item.country}</li>
+            <li>Бюджет: {item.budget}</li>
+            <li>Сборы в США: {item.fees_in_usa}</li>
+            <li>Сборы в мире: {item.fees_in_world}</li>
+            <li>Качество: {item.quality}</li>
+            <li>Рейтинг: {item.star}</li>
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

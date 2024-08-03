@@ -22,8 +22,8 @@ export const SessionProvider: FC<SessionProviderProps> = ({ children }) => {
     });
 
     if (data) {
-      localStorage.setItem("accessToken", JSON.stringify(data.accessToken));
-      localStorage.setItem("refreshToken", JSON.stringify(data.refreshToken));
+      localStorage.setItem("accessToken", JSON.stringify(data));
+      localStorage.setItem("refreshToken", JSON.stringify(data));
       window.location.reload();
     }
   };

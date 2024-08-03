@@ -2,6 +2,7 @@ namespace INFOMOVIE {
   type Quality = "144p" | "240p" | "360p" | "480p" | "720p" | "1080p" | "4K";
 
   type GetInfoMovieResponse = {
+    map(arg0: (item: any) => React.JSX.Element): React.ReactNode;
     title: string;
     title_ru: string;
     title_ky: string;

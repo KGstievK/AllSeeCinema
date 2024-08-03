@@ -2,7 +2,7 @@ import { api as index } from "..";
 
 const api = index.injectEndpoints({
   endpoints: (build) => ({
-    getMovie: build.query<
+    getMovieInfo: build.query<
       INFOMOVIE.GetInfoMovieResponse,
       INFOMOVIE.GetInfoMovieRequest
     >({
@@ -14,4 +14,4 @@ const api = index.injectEndpoints({
     }),
   }),
 });
-export const { useLazyGetMovieQuery } = api;
+export const { useGetMovieInfoQuery } = api;
